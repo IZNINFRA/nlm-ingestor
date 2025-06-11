@@ -9,15 +9,16 @@ try:
     nltk_abbs = load("tokenizers/punkt/{}.pickle".format("english")).abbrev_types
     print(nltk_abbs)
 except Exception as e:
-    print(e)
-    print("attempting _params fallback")
-    nltk_abbs = load("tokenizers/punkt/{}.pickle".format("english"))._params.abbrev_types
     try:
+        print(e)
+        print("attempting _params fallback")
+        nltk_abbs = load("tokenizers/punkt/{}.pickle".format("english"))._params.abbrev_types
         # NEW, CORRECTED CODE
+    except Exception as e:
+        print("last attempt parameters")
         from nltk.corpus.punkt import PunktParameters
         punkt_param = PunktParameters()
         nltk_abbs = punkt_param.abbrev_types
-    except Exception as e:
         print("nltk punkt params ultimately failed")
         print(e)
         raise e
