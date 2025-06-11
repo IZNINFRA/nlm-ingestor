@@ -4,7 +4,7 @@ import re
 import numpy as np
 from nltk import PunktSentenceTokenizer, load
 
-nltk_abbs = load("tokenizers/punkt/{}.pickle".format("english"))._params.abbrev_types
+nltk_abbs = load("tokenizers/punkt/{}.pickle".format("english")).abbrev_types
 
 
 class NpEncoder(json.JSONEncoder):
