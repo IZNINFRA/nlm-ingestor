@@ -2,6 +2,7 @@ import json
 import re
 
 import numpy as np
+import nltk
 from nltk import PunktSentenceTokenizer, load
 
 print(nltk.data.find("tokenizers/punkt"))
