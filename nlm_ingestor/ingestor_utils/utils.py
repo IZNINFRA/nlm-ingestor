@@ -4,8 +4,13 @@ import re
 import numpy as np
 from nltk import PunktSentenceTokenizer, load
 
-nltk_abbs = load("tokenizers/punkt/{}.pickle".format("english")).abbrev_types
-
+print(nltk.data.find("tokenizers/punkt"))
+try:
+    nltk_abbs = load("tokenizers/punkt/{}.pickle".format("english")).abbrev_types
+    print(nltk_abbs)
+except Exception as e:
+    print("attempting _params fallback")
+    nltk_abbs = load("tokenizers/punkt/{}.pickle".format("english"))._params.abbrev_types
 
 class NpEncoder(json.JSONEncoder):
     def default(self, obj):
